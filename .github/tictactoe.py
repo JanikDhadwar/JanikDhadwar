@@ -5,7 +5,6 @@ import json, os, subprocess, urllib.parse
 REPO = os.environ["REPO"]
 ISSUE_NUMBER = os.environ["ISSUE_NUMBER"]
 ISSUE_TITLE = os.environ["ISSUE_TITLE"]
-TOKEN = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN", "")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -156,12 +155,11 @@ def main():
     if subprocess.run(["git","diff","--cached","--quiet"], cwd=ROOT).returncode != 0:
         subprocess.run(["git","commit","-m","Tic-tac-toe: " + note], cwd=ROOT, check=False)
         subprocess.run(["git","push"], cwd=ROOT, check=False)
-    env = dict(os.environ)
-    if TOKEN:
-        env["GH_TOKEN"] = TOKEN
-    subprocess.run(["gh","issue","close",ISSUE_NUMBER,"--repo",REPO,
-                    "--comment", note + (" The board is updated ✓" if ok else "")],
-                   env=env, check=False, capture_output=True)
+    text = note + (" The board is updated \u2713" if ok else "")
+    _out = os.environ.get("GITHUB_OUTPUT")
+    if _out:
+        with open(_out, "a") as _f:
+            _f.write("note<<TTT_EOF\n" + text + "\nTTT_EOF\n")
 
 if __name__ == "__main__":
     main()
