@@ -5,6 +5,20 @@
 ⚡ Fun fact i'm apart of FRC 6390
 
 
+## 🎮 Play Tic-Tac-Toe With Me
+
+<!--TICTACTOE:START-->
+You're ❌ and I'm ⭕ — **click a square to start!**
+
+<table>
+<tr><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%200">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%201">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%202">⬜</a></td></tr>
+<tr><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%203">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%204">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%205">⬜</a></td></tr>
+<tr><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%206">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%207">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%208">⬜</a></td></tr>
+</table>
+
+<sub>📊 All-time — You: 0 · Me: 0 · Draws: 0</sub>
+<!--TICTACTOE:END-->
+
 ## 🌐 Socials:
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/janikdhadwar) ![](https://hackatime.hackclub.com/api/v1/badge/U0AKXLZ8ZN0/Theshadow4837/Scout)
 
