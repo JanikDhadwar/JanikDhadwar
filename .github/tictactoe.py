@@ -5,6 +5,7 @@ import json, os, subprocess, urllib.parse
 REPO = os.environ["REPO"]
 ISSUE_NUMBER = os.environ["ISSUE_NUMBER"]
 ISSUE_TITLE = os.environ["ISSUE_TITLE"]
+PLAYER = os.environ.get("ISSUE_USER", "someone")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -15,9 +16,11 @@ END = "<!--TICTACTOE:END-->"
 
 WINS = [(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
 
-def blank_state(x=0, o=0, d=0):
+def blank_state(x=0, o=0, d=0, players=None):
     return {"board": [""]*9, "over": False, "winner": None,
-            "x_wins": x, "o_wins": o, "draws": d}
+            "x_wins": x, "o_wins": o, "draws": d,
+            "players": players if isinstance(players, dict) else {},
+            "participants": []}
 
 def load_state():
     try:
@@ -31,6 +34,18 @@ def load_state():
         for k in ("x_wins","o_wins","draws"):
             if isinstance(s.get(k), int) and s[k] >= 0:
                 st[k] = s[k]
+        pl = s.get("players")
+        if isinstance(pl, dict):
+            for u, rec in pl.items():
+                if isinstance(u, str) and isinstance(rec, dict) and u[:39]:
+                    st["players"][u[:39]] = {
+                        "w": rec["w"] if isinstance(rec.get("w"), int) and rec["w"] >= 0 else 0,
+                        "l": rec["l"] if isinstance(rec.get("l"), int) and rec["l"] >= 0 else 0,
+                        "d": rec["d"] if isinstance(rec.get("d"), int) and rec["d"] >= 0 else 0,
+                    }
+        pa = s.get("participants")
+        if isinstance(pa, list):
+            st["participants"] = [u for u in pa if isinstance(u, str)][:9]
         return st
     except (FileNotFoundError, json.JSONDecodeError, AttributeError):
         return blank_state()
@@ -70,6 +85,10 @@ def finish(state, result):
         state["o_wins"] += 1
     else:
         state["draws"] += 1
+    key = {"X": "w", "O": "l"}.get(result, "d")
+    for u in state["participants"]:
+        rec = state["players"].setdefault(u, {"w": 0, "l": 0, "d": 0})
+        rec[key] += 1
 
 def issue_url(title):
     return "https://github.com/" + REPO + "/issues/new?title=" + urllib.parse.quote(title, safe="")
@@ -100,7 +119,17 @@ def render(state):
     else:
         status = "Your move — you're ❌. **Click a square!**"
     stats = "<sub>📊 All-time — You: %d · Me: %d · Draws: %d</sub>" % (state["x_wins"], state["o_wins"], state["draws"])
-    return "%s\n\n%s\n\n%s" % (status, table, stats)
+    players = state.get("players", {})
+    lb = ""
+    if players:
+        ranked = sorted(players.items(), key=lambda kv: (-kv[1]["w"], -kv[1]["d"], kv[1]["l"], kv[0]))
+        trs = "".join(
+            '<tr><td>@%s</td><td align="center">%d</td><td align="center">%d</td><td align="center">%d</td></tr>'
+            % (u, p["w"], p["l"], p["d"]) for u, p in ranked[:8])
+        lb = ('<sub>🏅 <b>Top players</b></sub>\n<table>\n'
+              '<tr><th align="left">Player</th><th>W</th><th>L</th><th>D</th></tr>\n%s</table>' % trs)
+    parts = [status, table, stats] + ([lb] if lb else [])
+    return "\n\n".join(parts)
 
 def update_readme(html):
     with open(README_PATH) as f:
@@ -118,7 +147,7 @@ def main():
     state = load_state()
     note = "Move recorded."
     if cmd == "new":
-        state = blank_state(state["x_wins"], state["o_wins"], state["draws"])
+        state = blank_state(state["x_wins"], state["o_wins"], state["draws"], state.get("players"))
         note = "New game started — you're ❌."
     elif cmd.startswith("move"):
         try:
@@ -131,16 +160,21 @@ def main():
             note = "Illegal move — that square is taken."
         else:
             state["board"][cell] = "X"
+            if PLAYER not in state["participants"]:
+                state["participants"].append(PLAYER)
+            def _rec():
+                r = state["players"].get(PLAYER, {"w": 0, "l": 0, "d": 0})
+                return " (your record: %dW-%dL-%dD)" % (r["w"], r["l"], r["d"])
             if check_winner(state["board"]) == "X":
-                finish(state, "X"); note = "You won! 🏆"
+                finish(state, "X"); note = "You won! 🏆" + _rec()
             elif full(state["board"]):
-                finish(state, "draw"); note = "It's a draw! 🤝"
+                finish(state, "draw"); note = "It's a draw! 🤝" + _rec()
             else:
                 state["board"][computer_move(state["board"])] = "O"
                 if check_winner(state["board"]) == "O":
-                    finish(state, "O"); note = "I win! 🤖"
+                    finish(state, "O"); note = "I win! 🤖" + _rec()
                 elif full(state["board"]):
-                    finish(state, "draw"); note = "It's a draw! 🤝"
+                    finish(state, "draw"); note = "It's a draw! 🤝" + _rec()
                 else:
                     note = "Move played — your turn."
     else:
