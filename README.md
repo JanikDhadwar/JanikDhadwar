@@ -37,12 +37,12 @@
 ## 🎮 Play Tic-Tac-Toe With Me
 
 <!--TICTACTOE:START-->
-🤝 **Draw!** <a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cnew"><b>↻ Play again</b></a>
+You're ❌ and I'm ⭕ — **click a square to start!**
 
 <table>
-<tr><td align="center" width="70" height="70">❌</td><td align="center" width="70" height="70">⭕</td><td align="center" width="70" height="70">❌</td></tr>
-<tr><td align="center" width="70" height="70">❌</td><td align="center" width="70" height="70">⭕</td><td align="center" width="70" height="70">❌</td></tr>
-<tr><td align="center" width="70" height="70">⭕</td><td align="center" width="70" height="70">❌</td><td align="center" width="70" height="70">⭕</td></tr>
+<tr><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%200">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%201">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%202">⬜</a></td></tr>
+<tr><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%203">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%204">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%205">⬜</a></td></tr>
+<tr><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%206">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%207">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%208">⬜</a></td></tr>
 </table>
 
 <sub>📊 All-time — You: 0 · Me: 0 · Draws: 1</sub>
