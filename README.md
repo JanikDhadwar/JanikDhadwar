@@ -40,7 +40,7 @@
 Your move — you're ❌. **Click a square!**
 
 <table>
-<tr><td align="center" width="70" height="70">❌</td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%201">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%202">⬜</a></td></tr>
+<tr><td align="center" width="70" height="70">❌</td><td align="center" width="70" height="70">⭕</td><td align="center" width="70" height="70">❌</td></tr>
 <tr><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%203">⬜</a></td><td align="center" width="70" height="70">⭕</td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%205">⬜</a></td></tr>
 <tr><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%206">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%207">⬜</a></td><td align="center" width="70" height="70"><a href="https://github.com/JanikDhadwar/JanikDhadwar/issues/new?title=tictactoe%7Cmove%208">⬜</a></td></tr>
 </table>
